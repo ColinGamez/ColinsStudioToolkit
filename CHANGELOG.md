@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.11.4
+
+- Made the standalone tool release workflow rerunnable so existing GitHub releases can be reused when publishing to Marketplace after adding `VSCE_PAT`.
+- Updated the standalone scaffold script to generate that safer release workflow for future tools.
+
 ## 1.11.3
 
 - Recorded the six standalone Code Suite `v0.1.0` GitHub releases and their VSIX-ready status.
