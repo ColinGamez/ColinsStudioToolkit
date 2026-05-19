@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.11.1
+
+- Refocused Marketplace metadata and README copy so Colin's VS Code Themes reads as a theme-first extension.
+- Added a Code Suite preview section that clearly separates incubating developer tools from the theme pack.
+- Added a standalone Code Suite split plan with repository names, Marketplace IDs, migration order, and transition rules.
+
 ## 1.11.0
 
 - Added Bug Report Builder as the sixth Colin's Code Suite tool.

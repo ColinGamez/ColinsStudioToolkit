@@ -4,6 +4,7 @@
 demos/**
 scripts/**
 docs/**
+!docs/code-suite-split.md
 .gitignore
 package-lock.json
 NEXT_EXTENSION_IDEAS.md

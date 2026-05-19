@@ -4,13 +4,17 @@ Colin's Code Suite is a family of VS Code extensions that feel polished, useful,
 
 The plan: build each tool as a standalone extension, then ship one extension pack that installs the whole suite.
 
+Current decision: keep `Colin's VS Code Themes` focused on themes, and split every developer tool into its own GitHub repository and Marketplace extension. The theme extension can keep preview copies during the transition so current users do not lose commands.
+
+Split plan: `docs/code-suite-split.md`
+
 ## Suite Extensions
 
 ### 1. Colin's Project Command Center
 
 Mission control for any workspace.
 
-Status: Alpha is landing inside Colin's VS Code Themes first as the second suite tool.
+Status: Alpha shipped inside Colin's VS Code Themes; next step is standalone repo extraction.
 
 Core idea:
 
@@ -34,7 +38,7 @@ MVP:
 
 Smart theme switching for moods, seasons, and coding sessions.
 
-Status: Alpha shipped in Colin's VS Code Themes v1.6.0.
+Status: Alpha shipped in Colin's VS Code Themes v1.6.0; next step is standalone repo extraction.
 
 Core idea:
 
@@ -56,7 +60,7 @@ MVP:
 
 A visual README builder inside VS Code.
 
-Status: Alpha is landing inside Colin's VS Code Themes as the third suite tool.
+Status: Alpha shipped inside Colin's VS Code Themes; next step is standalone repo extraction.
 
 Core idea:
 
@@ -79,7 +83,7 @@ MVP:
 
 Turn selected code into reusable snippets.
 
-Status: Alpha is landing inside Colin's VS Code Themes as the fourth suite tool.
+Status: Alpha shipped inside Colin's VS Code Themes; next step is standalone repo extraction.
 
 Core idea:
 
@@ -101,7 +105,7 @@ MVP:
 
 Make clean bug reports from the current coding session.
 
-Status: Alpha shipped in Colin's VS Code Themes v1.11.0.
+Status: Alpha shipped in Colin's VS Code Themes v1.11.0; next step is standalone repo extraction.
 
 Core idea:
 
@@ -142,7 +146,7 @@ MVP:
 
 A fast command hub for projects, scripts, links, and tools.
 
-Status: Alpha shipped in Colin's VS Code Themes v1.10.0.
+Status: Alpha shipped in Colin's VS Code Themes v1.10.0; next step is standalone repo extraction.
 
 Core idea:
 

@@ -2,7 +2,7 @@
 
 ![Colin's VS Code Themes banner](assets/brand-banner.png)
 
-A colorful VS Code theme hub built around fast mood switching: orange-first classics, seasonal palettes, holiday themes, gaming-inspired looks, file icons, settings presets, Theme Reactor automation, Project Command Center, Launch Pad, Bug Report Builder, README Studio, Snippet Forge, and theme-switching commands. It started with **All Orange** and grew into a 32-theme pack.
+A colorful VS Code theme hub built around fast mood switching: orange-first classics, seasonal palettes, holiday themes, gaming-inspired looks, file icons, settings presets, and theme-switching commands. It started with **All Orange** and grew into a 32-theme pack.
 
 Marketplace: https://marketplace.visualstudio.com/items?itemName=ColinGamez.my-vsc-themes
 
@@ -73,7 +73,13 @@ The extension also includes **Colin's Color Icons**, a matching PNG-based file i
 
 To enable it, run **Preferences: File Icon Theme** and choose **Colin's Color Icons**.
 
-## Theme Reactor
+## Code Suite Preview Tools
+
+The developer tools that started here are moving into their own standalone extensions so this Marketplace listing can stay focused on themes. They remain available in this extension during the transition, but each tool is planned to get its own GitHub repo, Marketplace page, README, changelog, icon, and release workflow.
+
+Split plan: [Code Suite Split Plan](docs/code-suite-split.md)
+
+### Theme Reactor
 
 Theme Reactor is the first tool in **Colin's Code Suite**. It can switch themes by time of day, season, holiday month, random favorite, or workspace.
 
@@ -111,7 +117,7 @@ Useful settings:
 }
 ```
 
-## Project Command Center
+### Project Command Center
 
 Project Command Center is the second tool in **Colin's Code Suite**. It adds a **Colin's Suite** activity bar view that detects the current workspace and gives you a quick project dashboard.
 
@@ -126,7 +132,7 @@ It can show:
 
 Open it from the activity bar with **Colin's Suite**, or run **Colin's Suite: Open Project Command Center** from the Command Palette.
 
-## README Studio
+### README Studio
 
 README Studio is the third tool in **Colin's Code Suite**. It opens a full editor-style webview for building a polished `README.md` without leaving VS Code.
 
@@ -140,7 +146,7 @@ It can:
 
 Run **Colin's Suite: Open README Studio** from the Command Palette, or open it from Project Command Center.
 
-## Snippet Forge
+### Snippet Forge
 
 Snippet Forge is the fourth tool in **Colin's Code Suite**. It turns selected code into reusable VS Code snippets and saves them into a workspace snippet file.
 
@@ -154,7 +160,7 @@ It can:
 
 Select code, right-click, and choose **Forge Snippet From Selection**, or run **Colin's Suite: Forge Snippet From Selection** from the Command Palette.
 
-## Launch Pad
+### Launch Pad
 
 Launch Pad is the fifth tool in **Colin's Code Suite**. It opens a workspace-aware launcher for project scripts, files, links, terminal commands, and suite tools.
 
@@ -168,7 +174,7 @@ It can:
 
 Run **Colin's Suite: Open Launch Pad** from the Command Palette, or open it from Project Command Center.
 
-## Bug Report Builder
+### Bug Report Builder
 
 Bug Report Builder is the sixth tool in **Colin's Code Suite**. It creates a GitHub-ready Markdown issue draft from the current editor and workspace context.
 
@@ -259,7 +265,7 @@ The manual **Release** workflow can create a GitHub release and optionally publi
 To capture fresh local VS Code screenshots:
 
 ```powershell
-.\scripts\capture-vscode-screenshots.ps1 -VsixPath .\my-vsc-themes-1.11.0.vsix
+.\scripts\capture-vscode-screenshots.ps1 -VsixPath .\my-vsc-themes-1.11.1.vsix
 ```
 
 ## Inspect Scopes
