@@ -118,6 +118,14 @@ function commandCenterRootItems(snapshot) {
 
 function commandCenterQuickActions(snapshot) {
   const items = [
+    new CommandCenterNode("Create Bug Report", {
+      description: "Issue draft",
+      icon: "bug",
+      command: {
+        command: "my-vsc-themes.bugReportBuilder.create",
+        title: "Create Bug Report"
+      }
+    }),
     new CommandCenterNode("Open Launch Pad", {
       description: "Workspace launcher",
       icon: "rocket",

@@ -128,6 +128,15 @@ function builtInLaunchPadItems(snapshot) {
 
   items.push(
     launchPadItem({
+      id: "command:my-vsc-themes.bugReportBuilder.create",
+      label: "Bug Report Builder",
+      type: "command",
+      target: "my-vsc-themes.bugReportBuilder.create",
+      detail: "Create a GitHub-ready issue draft",
+      group: "Suite",
+      badge: "bug"
+    }),
+    launchPadItem({
       id: "command:my-vsc-themes.readmeStudio.open",
       label: "README Studio",
       type: "command",

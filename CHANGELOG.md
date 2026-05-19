@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.11.0
+
+- Added Bug Report Builder as the sixth Colin's Code Suite tool.
+- Added GitHub-ready Markdown issue draft generation with title, observed behavior, expected behavior, and reproduction steps.
+- Added automatic project, Git, active file, diagnostics, VS Code, OS, and extension context.
+- Added optional selected-code and installed-extension capture, plus open draft, copy Markdown, and save `BUG_REPORT.md` actions.
+- Added Bug Report Builder entry points from the Command Palette, editor context menu, Project Command Center, and Launch Pad.
+
 ## 1.10.0
 
 - Added Launch Pad as the fifth Colin's Code Suite tool.

@@ -101,6 +101,8 @@ MVP:
 
 Make clean bug reports from the current coding session.
 
+Status: Alpha shipped in Colin's VS Code Themes v1.11.0.
+
 Core idea:
 
 - Collect the useful context people always forget: file type, selected code, diagnostics, VS Code version, extension list, branch, and recent terminal output.
@@ -213,7 +215,7 @@ Why this order: Theme Reactor uses the theme hub we already have, Project Comman
 
 ## First Milestones
 
-Ship Theme Reactor, Project Command Center, README Studio, Snippet Forge, and Launch Pad as the first suite tools.
+Ship Theme Reactor, Project Command Center, README Studio, Snippet Forge, Launch Pad, and Bug Report Builder as the first suite tools.
 
 Theme Reactor status: Alpha shipped in Colin's VS Code Themes v1.6.0.
 
@@ -265,3 +267,12 @@ Launch Pad scope:
 - Per-workspace pinned actions.
 - Custom links and terminal commands stored in `.vscode/colins-launch-pad.json`.
 - Entry points from the Command Palette and Project Command Center.
+
+Bug Report Builder status: Alpha shipped in Colin's VS Code Themes v1.11.0.
+
+Bug Report Builder scope:
+
+- Generate a GitHub-ready Markdown bug report from prompt answers and workspace context.
+- Include active file metadata, diagnostics, Git branch, project type, VS Code version, OS, and extension version.
+- Optional selected-code and installed-extension sections.
+- Output to an unsaved Markdown draft, clipboard, or `BUG_REPORT.md`.

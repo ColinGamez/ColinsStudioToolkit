@@ -1,8 +1,8 @@
 {
   "name": "my-vsc-themes",
   "displayName": "Colin's VS Code Themes",
-  "description": "A colorful VS Code theme hub with themes, file icons, presets, Theme Reactor, Command Center, Launch Pad, README Studio, and Snippet Forge.",
-  "version": "1.10.0",
+  "description": "A colorful VS Code theme hub with themes, file icons, presets, Theme Reactor, Command Center, Launch Pad, Bug Report Builder, README Studio, and Snippet Forge.",
+  "version": "1.11.0",
   "publisher": "ColinGamez",
   "license": "MIT",
   "main": "./extension.js",
@@ -27,6 +27,7 @@
     "onCommand:my-vsc-themes.configureReactorFavorites",
     "onCommand:my-vsc-themes.setReactorWorkspaceTheme",
     "onView:my-vsc-themes.commandCenter",
+    "onCommand:my-vsc-themes.bugReportBuilder.create",
     "onCommand:my-vsc-themes.launchPad.open",
     "onCommand:my-vsc-themes.commandCenter.open",
     "onCommand:my-vsc-themes.commandCenter.refresh",
@@ -96,6 +97,9 @@
     "launch pad",
     "workspace launcher",
     "productivity",
+    "bug report",
+    "issue builder",
+    "diagnostics",
     "readme",
     "documentation",
     "snippets",
@@ -103,6 +107,11 @@
   ],
   "contributes": {
     "commands": [
+      {
+        "command": "my-vsc-themes.bugReportBuilder.create",
+        "title": "Create Bug Report",
+        "category": "Colin's Suite"
+      },
       {
         "command": "my-vsc-themes.launchPad.open",
         "title": "Open Launch Pad",
@@ -337,6 +346,11 @@
     },
     "menus": {
       "editor/context": [
+        {
+          "command": "my-vsc-themes.bugReportBuilder.create",
+          "when": "editorTextFocus",
+          "group": "navigation@2"
+        },
         {
           "command": "my-vsc-themes.snippetForge.createFromSelection",
           "when": "editorHasSelection",

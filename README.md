@@ -2,7 +2,7 @@
 
 ![Colin's VS Code Themes banner](assets/brand-banner.png)
 
-A colorful VS Code theme hub built around fast mood switching: orange-first classics, seasonal palettes, holiday themes, gaming-inspired looks, file icons, settings presets, Theme Reactor automation, Project Command Center, Launch Pad, README Studio, Snippet Forge, and theme-switching commands. It started with **All Orange** and grew into a 32-theme pack.
+A colorful VS Code theme hub built around fast mood switching: orange-first classics, seasonal palettes, holiday themes, gaming-inspired looks, file icons, settings presets, Theme Reactor automation, Project Command Center, Launch Pad, Bug Report Builder, README Studio, Snippet Forge, and theme-switching commands. It started with **All Orange** and grew into a 32-theme pack.
 
 Marketplace: https://marketplace.visualstudio.com/items?itemName=ColinGamez.my-vsc-themes
 
@@ -168,12 +168,27 @@ It can:
 
 Run **Colin's Suite: Open Launch Pad** from the Command Palette, or open it from Project Command Center.
 
+## Bug Report Builder
+
+Bug Report Builder is the sixth tool in **Colin's Code Suite**. It creates a GitHub-ready Markdown issue draft from the current editor and workspace context.
+
+It can:
+
+- Prompt for the bug title, observed behavior, expected behavior, and reproduction steps.
+- Include active file metadata, language, selected line range, Git branch, workspace diagnostics, VS Code version, OS, and extension version.
+- Add active-file diagnostics with severity, location, source, and message.
+- Optionally include selected code and installed extension IDs.
+- Open a draft, copy Markdown, or save `BUG_REPORT.md` in the workspace root.
+
+Run **Colin's Suite: Create Bug Report** from the Command Palette, right-click in an editor, or open it from Project Command Center and Launch Pad.
+
 ## Command Palette Helpers
 
 After installing the extension, run these from the Command Palette:
 
 | Command | What it does |
 | --- | --- |
+| **Colin's Suite: Create Bug Report** | Generates a GitHub-ready Markdown bug report from editor diagnostics and workspace context. |
 | **Colin's Suite: Open Launch Pad** | Opens a searchable workspace launcher for scripts, files, links, terminal commands, and suite tools. |
 | **Colin's Suite: Forge Snippet From Selection** | Converts selected code into a reusable workspace snippet with optional placeholders. |
 | **Colin's Suite: Open Snippet Forge Workspace Snippets** | Opens `.vscode/colins-snippets.code-snippets`. |
@@ -244,7 +259,7 @@ The manual **Release** workflow can create a GitHub release and optionally publi
 To capture fresh local VS Code screenshots:
 
 ```powershell
-.\scripts\capture-vscode-screenshots.ps1 -VsixPath .\my-vsc-themes-1.10.0.vsix
+.\scripts\capture-vscode-screenshots.ps1 -VsixPath .\my-vsc-themes-1.11.0.vsix
 ```
 
 ## Inspect Scopes
