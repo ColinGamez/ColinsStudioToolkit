@@ -15,12 +15,12 @@ This repository remains the home for:
 
 | Tool | GitHub repository | Marketplace extension ID | Starting source |
 | --- | --- | --- | --- |
-| Project Command Center | `ColinGamez/colins-project-command-center` | `ColinGamez.colins-project-command-center` | `src/commandCenter.js`, `src/project.js` |
-| Theme Reactor | `ColinGamez/colins-theme-reactor` | `ColinGamez.colins-theme-reactor` | `src/themeReactor.js`, `src/themeData.js` |
-| README Studio | `ColinGamez/colins-readme-studio` | `ColinGamez.colins-readme-studio` | `src/readmeStudio.js`, `src/project.js` |
-| Snippet Forge | `ColinGamez/colins-snippet-forge` | `ColinGamez.colins-snippet-forge` | `src/snippetForge.js`, `src/project.js` |
-| Launch Pad | `ColinGamez/colins-launch-pad` | `ColinGamez.colins-launch-pad` | `src/launchPad.js`, `src/project.js` |
-| Bug Report Builder | `ColinGamez/colins-bug-report-builder` | `ColinGamez.colins-bug-report-builder` | `src/bugReportBuilder.js`, `src/project.js` |
+| Project Command Center | `ColinGamez/Project-Command-Center` | `ColinGamez.project-command-center` | `src/commandCenter.js`, `src/project.js` |
+| Theme Reactor | `ColinGamez/ThemeReactor` | `ColinGamez.theme-reactor` | `src/themeReactor.js`, `src/themeData.js` |
+| README Studio | `ColinGamez/ColinsReadMeStudio` | `ColinGamez.colins-readme-studio` | `src/readmeStudio.js`, `src/project.js` |
+| Snippet Forge | `ColinGamez/SnippetForge` | `ColinGamez.snippet-forge` | `src/snippetForge.js`, `src/project.js` |
+| Launch Pad | `ColinGamez/ColinsLaunchPad` | `ColinGamez.colins-launch-pad` | `src/launchPad.js`, `src/project.js` |
+| Bug Report Builder | `ColinGamez/bug-report-builder` | `ColinGamez.bug-report-builder` | `src/bugReportBuilder.js`, `src/project.js` |
 | Repo Time Machine | `ColinGamez/colins-repo-time-machine` | `ColinGamez.colins-repo-time-machine` | New standalone extension |
 | Code Mood Board | `ColinGamez/colins-code-mood-board` | `ColinGamez.colins-code-mood-board` | New standalone extension |
 | Code Suite Pack | `ColinGamez/colins-code-suite` | `ColinGamez.colins-code-suite` | Extension pack manifest |
@@ -37,8 +37,8 @@ This repository remains the home for:
 
 ## Naming Rules
 
-- Repositories use kebab case and start with `colins-`.
-- Marketplace package names match the repo names.
+- GitHub repository names follow the names Colin created.
+- Marketplace package names use lowercase kebab case, even when the GitHub repository uses PascalCase.
 - Command IDs use the standalone package name as the prefix.
 - Each tool README explains one job clearly instead of describing the whole suite.
 

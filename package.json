@@ -2,7 +2,7 @@
   "name": "my-vsc-themes",
   "displayName": "Colin's VS Code Themes",
   "description": "A colorful VS Code theme hub with 32 orange-first, seasonal, holiday, gaming, and mood themes plus a matching file icon theme.",
-  "version": "1.11.1",
+  "version": "1.11.2",
   "publisher": "ColinGamez",
   "license": "MIT",
   "main": "./extension.js",

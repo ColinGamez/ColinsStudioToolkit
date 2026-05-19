@@ -8,6 +8,15 @@ Current decision: keep `Colin's VS Code Themes` focused on themes, and split eve
 
 Split plan: `docs/code-suite-split.md`
 
+Created standalone repos:
+
+- `ColinGamez/bug-report-builder`
+- `ColinGamez/ColinsLaunchPad`
+- `ColinGamez/ColinsReadMeStudio`
+- `ColinGamez/Project-Command-Center`
+- `ColinGamez/SnippetForge`
+- `ColinGamez/ThemeReactor`
+
 ## Suite Extensions
 
 ### 1. Colin's Project Command Center

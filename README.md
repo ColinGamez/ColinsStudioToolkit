@@ -265,7 +265,7 @@ The manual **Release** workflow can create a GitHub release and optionally publi
 To capture fresh local VS Code screenshots:
 
 ```powershell
-.\scripts\capture-vscode-screenshots.ps1 -VsixPath .\my-vsc-themes-1.11.1.vsix
+.\scripts\capture-vscode-screenshots.ps1 -VsixPath .\my-vsc-themes-1.11.2.vsix
 ```
 
 ## Inspect Scopes

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.11.2
+
+- Updated the Code Suite split plan with the actual standalone GitHub repositories created for each tool.
+- Recorded the standalone Marketplace IDs that match the created repos.
+- Noted the first standalone extraction path for Bug Report Builder.
+
 ## 1.11.1
 
 - Refocused Marketplace metadata and README copy so Colin's VS Code Themes reads as a theme-first extension.
