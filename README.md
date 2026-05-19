@@ -86,7 +86,7 @@ Standalone repos:
 - [README Studio](https://github.com/ColinGamez/ColinsReadMeStudio)
 - [Project Command Center](https://github.com/ColinGamez/Project-Command-Center)
 - [Snippet Forge](https://github.com/ColinGamez/SnippetForge)
-- [Theme Reactor](https://github.com/ColinGamez/ThemeReactor)
+- [Theme Reactor / Theme Switcher](https://github.com/ColinGamez/ThemeReactor)
 
 ### Theme Reactor
 

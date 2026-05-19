@@ -15,12 +15,12 @@ This repository remains the home for:
 
 | Tool | GitHub repository | Marketplace extension ID | Status |
 | --- | --- | --- | --- |
-| Project Command Center | `ColinGamez/Project-Command-Center` | `ColinGamez.project-command-center` | `v0.1.0` GitHub release live, Marketplace pending `VSCE_PAT` |
-| Theme Reactor | `ColinGamez/ThemeReactor` | `ColinGamez.theme-reactor` | `v0.1.0` GitHub release live, Marketplace pending `VSCE_PAT` |
-| README Studio | `ColinGamez/ColinsReadMeStudio` | `ColinGamez.colins-readme-studio` | `v0.1.0` GitHub release live, Marketplace pending `VSCE_PAT` |
-| Snippet Forge | `ColinGamez/SnippetForge` | `ColinGamez.snippet-forge` | `v0.1.0` GitHub release live, Marketplace pending `VSCE_PAT` |
-| Launch Pad | `ColinGamez/ColinsLaunchPad` | `ColinGamez.colins-launch-pad` | `v0.1.0` GitHub release live, Marketplace pending `VSCE_PAT` |
-| Bug Report Builder | `ColinGamez/bug-report-builder` | `ColinGamez.bug-report-builder` | `v0.1.0` GitHub release live, Marketplace pending `VSCE_PAT` |
+| Project Command Center | `ColinGamez/Project-Command-Center` | `ColinGamez.project-command-center` | `v0.1.0` published |
+| Theme Reactor / Theme Switcher | `ColinGamez/ThemeReactor` | `ColinGamez.colins-theme-switcher` | `v0.1.3` published as a no-code companion pack after Marketplace blocked the code package |
+| README Studio | `ColinGamez/ColinsReadMeStudio` | `ColinGamez.colins-readme-studio` | `v0.1.0` published |
+| Snippet Forge | `ColinGamez/SnippetForge` | `ColinGamez.snippet-forge` | `v0.1.0` published |
+| Launch Pad | `ColinGamez/ColinsLaunchPad` | `ColinGamez.colins-launch-pad` | `v0.1.0` published |
+| Bug Report Builder | `ColinGamez/bug-report-builder` | `ColinGamez.bug-report-builder` | `v0.1.0` published |
 | Repo Time Machine | `ColinGamez/colins-repo-time-machine` | `ColinGamez.colins-repo-time-machine` | Future standalone extension |
 | Code Mood Board | `ColinGamez/colins-code-mood-board` | `ColinGamez.colins-code-mood-board` | Future standalone extension |
 | Code Suite Pack | `ColinGamez/colins-code-suite` | `ColinGamez.colins-code-suite` | Future extension pack manifest |
@@ -32,14 +32,23 @@ This repository remains the home for:
 - README Studio: https://github.com/ColinGamez/ColinsReadMeStudio/releases/tag/v0.1.0
 - Project Command Center: https://github.com/ColinGamez/Project-Command-Center/releases/tag/v0.1.0
 - Snippet Forge: https://github.com/ColinGamez/SnippetForge/releases/tag/v0.1.0
-- Theme Reactor: https://github.com/ColinGamez/ThemeReactor/releases/tag/v0.1.0
+- Theme Reactor / Theme Switcher: https://github.com/ColinGamez/ThemeReactor/releases/tag/v0.1.3
+
+## Marketplace Pages
+
+- Bug Report Builder: https://marketplace.visualstudio.com/items?itemName=ColinGamez.bug-report-builder
+- Launch Pad: https://marketplace.visualstudio.com/items?itemName=ColinGamez.colins-launch-pad
+- README Studio: https://marketplace.visualstudio.com/items?itemName=ColinGamez.colins-readme-studio
+- Project Command Center: https://marketplace.visualstudio.com/items?itemName=ColinGamez.project-command-center
+- Snippet Forge: https://marketplace.visualstudio.com/items?itemName=ColinGamez.snippet-forge
+- Theme Switcher: https://marketplace.visualstudio.com/items?itemName=ColinGamez.colins-theme-switcher
 
 ## Migration Order
 
 1. Create each standalone GitHub repository. Done for the first six tools.
 2. Scaffold each extension with its own `package.json`, `README.md`, `CHANGELOG.md`, `LICENSE`, `.vscodeignore`, and release workflow. Done for the first six tools.
 3. Copy the relevant module from this repo and trim command IDs/settings to the standalone extension name. Done for the first six tools.
-4. Publish each tool under the `ColinGamez` Marketplace publisher after each repo has a `VSCE_PAT` secret.
+4. Publish each tool under the `ColinGamez` Marketplace publisher. Done for the first six Marketplace entries.
 5. Create `colins-code-suite` as an extension pack that installs the standalone tools.
 6. Update this theme extension to link to the standalone tool pages.
 7. After the standalone tools are stable, remove or deprecate the preview tool commands from this theme extension in a major release.

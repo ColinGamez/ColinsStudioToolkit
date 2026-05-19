@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.11.5
+
+- Recorded the Marketplace publication of the six standalone Code Suite entries.
+- Updated the split plan for Theme Reactor's Marketplace-safe companion listing, `ColinGamez.colins-theme-switcher`.
+
 ## 1.11.4
 
 - Made the standalone tool release workflow rerunnable so existing GitHub releases can be reused when publishing to Marketplace after adding `VSCE_PAT`.
