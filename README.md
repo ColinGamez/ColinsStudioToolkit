@@ -75,9 +75,18 @@ To enable it, run **Preferences: File Icon Theme** and choose **Colin's Color Ic
 
 ## Code Suite Preview Tools
 
-The developer tools that started here are moving into their own standalone extensions so this Marketplace listing can stay focused on themes. They remain available in this extension during the transition, but each tool is planned to get its own GitHub repo, Marketplace page, README, changelog, icon, and release workflow.
+The developer tools that started here are moving into their own standalone extensions so this Marketplace listing can stay focused on themes. They remain available in this extension during the transition, and the first six standalone repos now have `v0.1.0` GitHub releases with installable VSIX files.
 
 Split plan: [Code Suite Split Plan](docs/code-suite-split.md)
+
+Standalone repos:
+
+- [Bug Report Builder](https://github.com/ColinGamez/bug-report-builder)
+- [Launch Pad](https://github.com/ColinGamez/ColinsLaunchPad)
+- [README Studio](https://github.com/ColinGamez/ColinsReadMeStudio)
+- [Project Command Center](https://github.com/ColinGamez/Project-Command-Center)
+- [Snippet Forge](https://github.com/ColinGamez/SnippetForge)
+- [Theme Reactor](https://github.com/ColinGamez/ThemeReactor)
 
 ### Theme Reactor
 

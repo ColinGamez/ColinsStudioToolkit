@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.11.3
+
+- Recorded the six standalone Code Suite `v0.1.0` GitHub releases and their VSIX-ready status.
+- Added a repeatable scaffold script for creating standalone tool repos from the incubated modules.
+- Linked the standalone tool repositories from the README while keeping this Marketplace listing theme-first.
+
 ## 1.11.2
 
 - Updated the Code Suite split plan with the actual standalone GitHub repositories created for each tool.
