@@ -98,24 +98,3 @@ Payments use Stripe-hosted checkout. Extensions contact the billing service to v
 [Report a problem or request a feature](https://github.com/ColinGamez/ColinsStudioToolkit/issues). Include the extension and VS Code versions, steps to reproduce, and exact error. Review code or screenshots before sharing.
 
 Previously released MIT versions retain their original rights. Original MIT notices are preserved.
-
-## Source and development
-
-This repository contains the all-in-one toolkit source. Existing command and configuration IDs beginning with `my-vsc-themes` are retained for compatibility; the current Marketplace ID is `ColinGamez.colins-developer-toolkit`.
-
-Requires Node.js 24:
-
-```sh
-npm ci
-npm run check
-npm run check:themes
-npm run package
-```
-
-The installer is written to `dist/colins-developer-toolkit-2.2.1.vsix` (using the version in package.json). The packaging script removes static theme contributions and theme assets from the public installer. Theme assets are delivered separately after purchase activation. Source assets and their original MIT notices remain in this repository.
-
-`src/billing-config.json` contains only the live HTTPS billing origin and public verification key. It contains no payment credentials. Stripe and license-signing private keys belong only in the separate billing service and must never be committed here.
-
-Theme-generation scripts remain available through `npm run build` for development. Changes to licensed theme assets require a coordinated billing-service theme-package release and checksum update before distribution.
-
-GitHub Actions checks and packages pushes and pull requests. The manual Release workflow creates a GitHub release installer; it does not automatically publish to Marketplace. Upload the resulting VSIX using **Update** on the existing Developer Toolkit listing.
