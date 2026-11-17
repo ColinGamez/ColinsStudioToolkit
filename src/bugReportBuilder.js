@@ -1,3 +1,4 @@
+const { registerSafeCommand } = require("./suiteRuntime");
 const vscode = require("vscode");
 const os = require("os");
 const path = require("path");
@@ -241,6 +242,13 @@ async function askBoolean(title, placeHolder, yesLabel = "Yes", noLabel = "No") 
   return choice?.value === true;
 }
 
+function redactReport(text) {
+  return text
+    .replace(/\b(?:sk|rk)_(?:live|test)_[A-Za-z0-9]+\b/g, "[REDACTED_STRIPE_KEY]")
+    .replace(/\bgh[pousr]_[A-Za-z0-9]{20,}\b/g, "[REDACTED_GITHUB_TOKEN]")
+    .replace(/(\b(?:password|api[_-]?key|secret|access[_-]?token)\s*[:=]\s*)["']?[^\s"'`,;]+["']?/gi, "$1[REDACTED]");
+}
+
 function buildBugReport({ context, snapshot, active, title, observed, expected, steps, includeSelection, includeExtensions }) {
   const sections = [
     `# ${title}`,
@@ -274,7 +282,7 @@ function buildBugReport({ context, snapshot, active, title, observed, expected, 
     sections.push("## Installed Extensions", installedExtensionLines());
   }
 
-  return `${sections.join("\n\n")}\n`;
+  return redactReport(`${sections.join("\n\n")}\n`);
 }
 
 async function saveBugReport(markdown, openAfterSave) {
@@ -405,7 +413,7 @@ async function createBugReport(context) {
 
 function registerBugReportBuilder(context) {
   context.subscriptions.push(
-    vscode.commands.registerCommand("my-vsc-themes.bugReportBuilder.create", () => createBugReport(context))
+    registerSafeCommand("my-vsc-themes.bugReportBuilder.create", () => createBugReport(context))
   );
 }
 

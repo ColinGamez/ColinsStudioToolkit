@@ -1,3 +1,34 @@
+# 2.2.1
+
+- Clarified the all-in-one toolkit description, purchase instructions, activation prompt, and support information.
+
+# 2.2.0
+
+- Combined all tools and theme automation into one self-contained Developer Toolkit.
+- No standalone extensions or extension-pack dependencies required.
+- Existing live purchase keys continue to work.
+
+# 2.1.0
+
+- Renamed the main listing to Colin's Developer Toolkit.
+- Installs six standalone tools as a true extension pack.
+- Removed duplicate bundled tool commands and views from the toolkit.
+- Preserved the listing ID, purchase activation, and licensed theme installation.
+
+# 2.0.1
+
+- Updated Marketplace descriptions, feature documentation, lifetime bundle instructions, activation recovery, and support links.
+
+## 2.0.0 ? paid-client test preview
+
+One CAD $14.99 lifetime bundle for all seven extensions. Add purchase, activation, restore/status, signed offline licenses, and verified licensed-theme installation. The test build does not charge real money.
+
+## 1.12.0 ? local preview (2026-11-16)
+
+Searchable Quick Actions and recent actions; better errors; multi-folder tool context; README draft recovery; snippet indentation and final cursor; report credential redaction; theme validation and previous-theme restore.
+
+Purchasing and licensing are pending; this preview does not charge customers.
+
 # Changelog
 
 ## 1.11.5

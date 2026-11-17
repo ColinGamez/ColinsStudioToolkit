@@ -1,3 +1,4 @@
+const { registerSafeCommand } = require("./suiteRuntime");
 const vscode = require("vscode");
 const fs = require("fs");
 const path = require("path");
@@ -324,6 +325,8 @@ function commandCenterReactorItems() {
 }
 
 function commandCenterTerminal(snapshot = projectSnapshot()) {
+  const existing = vscode.window.terminals.find(terminal => terminal.name === "Colin's Command Center" && terminal.creationOptions?.cwd === snapshot.root);
+  if (existing) return existing;
   return vscode.window.createTerminal({
     name: "Colin's Command Center",
     cwd: snapshot.root
@@ -331,6 +334,10 @@ function commandCenterTerminal(snapshot = projectSnapshot()) {
 }
 
 async function runProjectScript(scriptName) {
+  if (!vscode.workspace.isTrusted) {
+    await vscode.window.showWarningMessage("Trust this workspace before running project scripts.");
+    return;
+  }
   const snapshot = projectSnapshot();
 
   if (!snapshot.root || !snapshot.scripts.includes(scriptName)) {
@@ -478,19 +485,20 @@ function registerCommandCenter(context) {
       treeDataProvider: commandCenterProvider,
       showCollapseAll: true
     }),
-    vscode.commands.registerCommand("my-vsc-themes.commandCenter.open", openCommandCenter),
-    vscode.commands.registerCommand("my-vsc-themes.commandCenter.refresh", () => commandCenterProvider.refresh()),
-    vscode.commands.registerCommand("my-vsc-themes.commandCenter.runScript", runProjectScript),
-    vscode.commands.registerCommand("my-vsc-themes.commandCenter.runBestScript", runBestProjectScript),
-    vscode.commands.registerCommand("my-vsc-themes.commandCenter.openTerminal", openProjectTerminal),
-    vscode.commands.registerCommand("my-vsc-themes.commandCenter.openFile", openWorkspaceFile),
-    vscode.commands.registerCommand("my-vsc-themes.commandCenter.openOrCreateFile", openOrCreateWorkspaceFile),
-    vscode.commands.registerCommand("my-vsc-themes.commandCenter.openRepository", openProjectRepository),
-    vscode.commands.registerCommand("my-vsc-themes.commandCenter.createMissingBasics", createMissingBasics)
+    registerSafeCommand("my-vsc-themes.commandCenter.open", openCommandCenter),
+    registerSafeCommand("my-vsc-themes.commandCenter.refresh", () => commandCenterProvider.refresh()),
+    registerSafeCommand("my-vsc-themes.commandCenter.runScript", runProjectScript),
+    registerSafeCommand("my-vsc-themes.commandCenter.runBestScript", runBestProjectScript),
+    registerSafeCommand("my-vsc-themes.commandCenter.openTerminal", openProjectTerminal),
+    registerSafeCommand("my-vsc-themes.commandCenter.openFile", openWorkspaceFile),
+    registerSafeCommand("my-vsc-themes.commandCenter.openOrCreateFile", openOrCreateWorkspaceFile),
+    registerSafeCommand("my-vsc-themes.commandCenter.openRepository", openProjectRepository),
+    registerSafeCommand("my-vsc-themes.commandCenter.createMissingBasics", createMissingBasics)
   );
 
   context.subscriptions.push(
     vscode.workspace.onDidChangeWorkspaceFolders(() => commandCenterProvider.refresh()),
+    vscode.window.onDidChangeActiveTextEditor(() => commandCenterProvider.refresh()),
     vscode.workspace.onDidSaveTextDocument((document) => {
       const fileName = path.basename(document.uri.fsPath).toLowerCase();
 

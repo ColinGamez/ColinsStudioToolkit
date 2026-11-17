@@ -1,44 +1,33 @@
-name: CI
-
+name: Toolkit CI
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
   workflow_dispatch:
-
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
+permissions:
+  contents: read
 jobs:
   build:
-    name: Build and package
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
-
       - name: Install dependencies
         run: npm ci
-
-      - name: Build generated assets
-        run: npm run build
-
+      - name: Check toolkit
+        run: npm run check
       - name: Check theme contrast
         run: npm run check:themes
-
-      - name: Package VSIX
-        run: npx @vscode/vsce package --allow-missing-repository
-
-      - name: Upload VSIX artifact
-        uses: actions/upload-artifact@v4
+      - name: Package commercial toolkit
+        run: npm run package
+      - name: Upload toolkit installer
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: my-vsc-themes-vsix
-          path: "*.vsix"
+          name: colins-developer-toolkit-vsix
+          path: dist/*.vsix
+          if-no-files-found: error

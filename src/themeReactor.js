@@ -1,3 +1,5 @@
+const { requireAccess } = require("./suiteLicense");
+const { registerSafeCommand } = require("./suiteRuntime");
 const vscode = require("vscode");
 const { PACKS, ALL_THEMES } = require("./themeData");
 const { runExtensionTask } = require("./utils");
@@ -145,9 +147,21 @@ function reactorThemeForDate(date = new Date()) {
   return isHolidayMonth(date) ? holidayTheme(date) : reactorTimeTheme(date);
 }
 
+let previousTheme;
+async function restorePreviousTheme() {
+  if (!previousTheme) return vscode.window.showInformationMessage("No previous theme in this session.");
+  return setTheme(previousTheme, "restored", { force: true });
+}
+
 async function setTheme(label, detail, options = {}) {
+  const installed = vscode.extensions.all.flatMap(extension => extension.packageJSON?.contributes?.themes || []);
+  if (!installed.some(theme => (theme.label || theme.id) === label)) {
+    if (!options.silent) await vscode.window.showWarningMessage(`Theme "${label}" is not installed. Install its theme extension first.`);
+    return false;
+  }
   const currentTheme = vscode.workspace.getConfiguration("workbench").get("colorTheme");
   const target = options.target ?? vscode.ConfigurationTarget.Global;
+  if (currentTheme !== label) previousTheme = currentTheme;
 
   if (currentTheme === label && !options.force) {
     if (!options.silent) {
@@ -294,6 +308,7 @@ async function applyThemeReactor(options = {}) {
 }
 
 async function applyThemeReactorIfEnabled(options = {}) {
+  if (!await requireAccess(true)) return;
   const config = vscode.workspace.getConfiguration("myVscThemes");
 
   if (!config.get("reactor.enabled", false)) {
@@ -411,6 +426,7 @@ async function setReactorWorkspaceTheme() {
 }
 
 async function applyConfiguredStartupTheme() {
+  if (!await requireAccess(true)) return;
   const config = vscode.workspace.getConfiguration("myVscThemes");
 
   if (config.get("reactor.enabled", false)) {
@@ -446,25 +462,26 @@ function watchThemeReactor(context) {
 }
 
 function registerThemeReactor(context) {
+  context.subscriptions.push(registerSafeCommand("my-vsc-themes.restorePreviousTheme", restorePreviousTheme));
   context.subscriptions.push(
-    vscode.commands.registerCommand("my-vsc-themes.applySeasonalTheme", applySeasonalTheme),
-    vscode.commands.registerCommand("my-vsc-themes.applyHolidayTheme", applyHolidayTheme),
-    vscode.commands.registerCommand("my-vsc-themes.pickGamingTheme", () => pickThemeFromPack("Gaming")),
-    vscode.commands.registerCommand("my-vsc-themes.pickThemeByPack", pickThemeByPack),
-    vscode.commands.registerCommand("my-vsc-themes.enableLightDarkAutoSwitch", enableLightDarkAutoSwitch),
-    vscode.commands.registerCommand("my-vsc-themes.enableMonthlyAutoTheme", enableMonthlyAutoTheme),
-    vscode.commands.registerCommand("my-vsc-themes.disableMonthlyAutoTheme", disableMonthlyAutoTheme),
-    vscode.commands.registerCommand("my-vsc-themes.applyOrangePreset", applyOrangePreset),
-    vscode.commands.registerCommand("my-vsc-themes.applyFocusPreset", applyFocusPreset),
-    vscode.commands.registerCommand("my-vsc-themes.applyLightPreset", applyLightPreset),
-    vscode.commands.registerCommand("my-vsc-themes.applyGamingPreset", applyGamingPreset),
-    vscode.commands.registerCommand("my-vsc-themes.enableThemeReactor", enableThemeReactor),
-    vscode.commands.registerCommand("my-vsc-themes.disableThemeReactor", disableThemeReactor),
-    vscode.commands.registerCommand("my-vsc-themes.applyThemeReactorNow", applyThemeReactorNow),
-    vscode.commands.registerCommand("my-vsc-themes.pickReactorFavorite", pickReactorFavorite),
-    vscode.commands.registerCommand("my-vsc-themes.randomReactorFavorite", randomReactorFavorite),
-    vscode.commands.registerCommand("my-vsc-themes.configureReactorFavorites", configureReactorFavorites),
-    vscode.commands.registerCommand("my-vsc-themes.setReactorWorkspaceTheme", setReactorWorkspaceTheme)
+    registerSafeCommand("my-vsc-themes.applySeasonalTheme", applySeasonalTheme),
+    registerSafeCommand("my-vsc-themes.applyHolidayTheme", applyHolidayTheme),
+    registerSafeCommand("my-vsc-themes.pickGamingTheme", () => pickThemeFromPack("Gaming")),
+    registerSafeCommand("my-vsc-themes.pickThemeByPack", pickThemeByPack),
+    registerSafeCommand("my-vsc-themes.enableLightDarkAutoSwitch", enableLightDarkAutoSwitch),
+    registerSafeCommand("my-vsc-themes.enableMonthlyAutoTheme", enableMonthlyAutoTheme),
+    registerSafeCommand("my-vsc-themes.disableMonthlyAutoTheme", disableMonthlyAutoTheme),
+    registerSafeCommand("my-vsc-themes.applyOrangePreset", applyOrangePreset),
+    registerSafeCommand("my-vsc-themes.applyFocusPreset", applyFocusPreset),
+    registerSafeCommand("my-vsc-themes.applyLightPreset", applyLightPreset),
+    registerSafeCommand("my-vsc-themes.applyGamingPreset", applyGamingPreset),
+    registerSafeCommand("my-vsc-themes.enableThemeReactor", enableThemeReactor),
+    registerSafeCommand("my-vsc-themes.disableThemeReactor", disableThemeReactor),
+    registerSafeCommand("my-vsc-themes.applyThemeReactorNow", applyThemeReactorNow),
+    registerSafeCommand("my-vsc-themes.pickReactorFavorite", pickReactorFavorite),
+    registerSafeCommand("my-vsc-themes.randomReactorFavorite", randomReactorFavorite),
+    registerSafeCommand("my-vsc-themes.configureReactorFavorites", configureReactorFavorites),
+    registerSafeCommand("my-vsc-themes.setReactorWorkspaceTheme", setReactorWorkspaceTheme)
   );
 
   watchThemeReactor(context);

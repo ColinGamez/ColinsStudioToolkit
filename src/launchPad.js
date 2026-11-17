@@ -1,3 +1,5 @@
+const { requireAccess } = require("./suiteLicense");
+const { registerSafeCommand } = require("./suiteRuntime");
 const vscode = require("vscode");
 const fs = require("fs");
 const path = require("path");
@@ -426,6 +428,16 @@ async function runLaunchPadItem(itemId) {
     return;
   }
 
+  if (["script", "terminal", "command"].includes(item.type) && !vscode.workspace.isTrusted) {
+    await vscode.window.showWarningMessage("Trust this workspace before running its actions.");
+    return;
+  }
+
+  if (item.custom && ["terminal", "command"].includes(item.type)) {
+    const confirmed = await vscode.window.showWarningMessage(`Run ${item.label}? ${item.target}`, { modal: true }, "Run");
+    if (confirmed !== "Run") return;
+  }
+
   if (item.type === "script") {
     await vscode.commands.executeCommand("my-vsc-themes.commandCenter.runScript", item.target);
     return;
@@ -437,6 +449,10 @@ async function runLaunchPadItem(itemId) {
   }
 
   if (item.type === "url") {
+    if (!/^https?:\/\//i.test(item.target)) {
+      await vscode.window.showWarningMessage("Launch Pad links must use http or https.");
+      return;
+    }
     await vscode.env.openExternal(vscode.Uri.parse(item.target));
     return;
   }
@@ -496,6 +512,7 @@ async function openLaunchPad() {
   const token = nonce();
   panel.webview.html = launchPadHtml(panel.webview, token, state);
   panel.webview.onDidReceiveMessage(async (message) => {
+    if (!await requireAccess(true)) return;
     if (message?.type === "runItem") {
       await runLaunchPadItem(String(message.id ?? ""));
       return;
@@ -957,7 +974,7 @@ function launchPadHtml(webview, token, state) {
 
 function registerLaunchPad(context) {
   context.subscriptions.push(
-    vscode.commands.registerCommand("my-vsc-themes.launchPad.open", openLaunchPad),
+    registerSafeCommand("my-vsc-themes.launchPad.open", openLaunchPad),
     vscode.workspace.onDidChangeWorkspaceFolders(() => postLaunchPadState()),
     vscode.workspace.onDidSaveTextDocument((document) => {
       const root = workspaceRoot();

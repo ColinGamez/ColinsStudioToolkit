@@ -3,3 +3,10 @@ node_modules/
 *.vsix
 .tmp-vscode-screenshot-user/
 .tmp-vscode-screenshot-extensions/
+
+.env*
+.vercel/
+private/
+artifacts/
+dist/
+*.local.*

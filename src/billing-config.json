@@ -1,0 +1,5 @@
+{
+  "origin": "https://colins-marketplace-billing.vercel.app",
+  "test": false,
+  "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAAgq1OHFNEjieQQeUqG3LbNakCfobE5axU5MOVXc2vBk=\n-----END PUBLIC KEY-----\n"
+}

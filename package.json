@@ -1,8 +1,8 @@
 {
-  "name": "my-vsc-themes",
-  "displayName": "Colin's VS Code Themes",
-  "description": "A colorful VS Code theme hub with 32 orange-first, seasonal, holiday, gaming, and mood themes plus a matching file icon theme.",
-  "version": "1.11.5",
+  "name": "colins-developer-toolkit",
+  "displayName": "Colin's Developer Toolkit",
+  "description": "All-in-one VS Code toolkit: 32 themes, file icons, bug reports, launcher, project sidebar, README editor, and snippets. CAD $14.99 once for lifetime access.",
+  "version": "2.2.1",
   "publisher": "ColinGamez",
   "license": "MIT",
   "main": "./extension.js",
@@ -37,7 +37,14 @@
     "onCommand:my-vsc-themes.commandCenter.createMissingBasics",
     "onCommand:my-vsc-themes.readmeStudio.open",
     "onCommand:my-vsc-themes.snippetForge.createFromSelection",
-    "onCommand:my-vsc-themes.snippetForge.openWorkspaceSnippets"
+    "onCommand:my-vsc-themes.snippetForge.openWorkspaceSnippets",
+    "onCommand:colins-developer-toolkit.quickActions",
+    "onCommand:my-vsc-themes.restorePreviousTheme",
+    "onCommand:colins-developer-toolkit.license.buy",
+    "onCommand:colins-developer-toolkit.license.activate",
+    "onCommand:colins-developer-toolkit.license.status",
+    "onCommand:colins-developer-toolkit.license.deactivate",
+    "onCommand:colins-developer-toolkit.license.installThemes"
   ],
   "extensionKind": [
     "ui"
@@ -47,14 +54,13 @@
     "color": "#180602",
     "theme": "dark"
   },
-  "pricing": "Free",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ColinGamez/My-VSC-Themes.git"
+    "url": "https://github.com/ColinGamez/ColinsStudioToolkit.git"
   },
-  "homepage": "https://github.com/ColinGamez/My-VSC-Themes#readme",
+  "homepage": "https://colins-marketplace-billing.vercel.app",
   "bugs": {
-    "url": "https://github.com/ColinGamez/My-VSC-Themes/issues"
+    "url": "https://github.com/ColinGamez/ColinsStudioToolkit/issues"
   },
   "scripts": {
     "build": "npm run build:icon && npm run build:no-italics && npm run build:variants && npm run build:extras && npm run build:file-icons && npm run build:previews && npm run build:sampler",
@@ -65,7 +71,9 @@
     "build:file-icons": "node scripts/build-file-icons.mjs",
     "build:previews": "node scripts/build-previews.mjs",
     "build:sampler": "node scripts/build-sampler.mjs",
-    "check:themes": "node scripts/check-theme-quality.mjs"
+    "check:themes": "node scripts/check-theme-quality.mjs",
+    "package": "node scripts/package-toolkit.mjs",
+    "check": "node scripts/check-toolkit.mjs"
   },
   "engines": {
     "vscode": "^1.90.0"
@@ -75,168 +83,198 @@
     "Other"
   ],
   "keywords": [
-    "theme",
-    "theme pack",
-    "dark theme",
-    "light theme",
-    "orange",
-    "color theme",
-    "seasonal themes",
-    "holiday themes",
-    "gaming themes",
-    "halloween",
-    "retro",
-    "cyberpunk",
+    "developer tools",
+    "productivity",
+    "toolkit",
+    "themes",
     "file icons",
-    "auto theme",
-    "theme switcher"
+    "snippets",
+    "readme",
+    "bug reports",
+    "workspace",
+    "terminal"
   ],
   "contributes": {
     "commands": [
       {
         "command": "my-vsc-themes.bugReportBuilder.create",
         "title": "Create Bug Report",
-        "category": "Colin's Suite"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.launchPad.open",
         "title": "Open Launch Pad",
-        "category": "Colin's Suite"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.snippetForge.createFromSelection",
         "title": "Forge Snippet From Selection",
-        "category": "Colin's Suite"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.snippetForge.openWorkspaceSnippets",
         "title": "Open Snippet Forge Workspace Snippets",
-        "category": "Colin's Suite"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.readmeStudio.open",
         "title": "Open README Studio",
-        "category": "Colin's Suite"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.commandCenter.open",
         "title": "Open Project Command Center",
-        "category": "Colin's Suite"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.commandCenter.refresh",
         "title": "Refresh Project Command Center",
-        "category": "Colin's Suite"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.commandCenter.runBestScript",
         "title": "Run Best Project Script",
-        "category": "Colin's Suite"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.commandCenter.openTerminal",
         "title": "Open Project Terminal",
-        "category": "Colin's Suite"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.commandCenter.openRepository",
         "title": "Open Project Repository",
-        "category": "Colin's Suite"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.commandCenter.createMissingBasics",
         "title": "Create Missing Project Basics",
-        "category": "Colin's Suite"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.applySeasonalTheme",
         "title": "Apply Current Seasonal Theme",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.applyHolidayTheme",
         "title": "Apply Current Holiday Theme",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.pickGamingTheme",
         "title": "Pick Gaming Theme",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.pickThemeByPack",
         "title": "Pick Theme By Pack",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.enableLightDarkAutoSwitch",
         "title": "Enable Light/Dark Auto Switch",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.enableMonthlyAutoTheme",
         "title": "Enable Startup Seasonal Auto Theme",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.disableMonthlyAutoTheme",
         "title": "Disable Startup Seasonal Auto Theme",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.applyOrangePreset",
         "title": "Apply Orange Coding Preset",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.applyFocusPreset",
         "title": "Apply Focus Preset",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.applyLightPreset",
         "title": "Apply Light Coding Preset",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.applyGamingPreset",
         "title": "Apply Gaming Preset",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.enableThemeReactor",
         "title": "Enable Theme Reactor",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.disableThemeReactor",
         "title": "Disable Theme Reactor",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.applyThemeReactorNow",
         "title": "Apply Theme Reactor Now",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.pickReactorFavorite",
         "title": "Pick Theme Reactor Favorite",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.randomReactorFavorite",
         "title": "Random Theme Reactor Favorite",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.configureReactorFavorites",
         "title": "Configure Theme Reactor Favorites",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
       },
       {
         "command": "my-vsc-themes.setReactorWorkspaceTheme",
         "title": "Set Theme Reactor Workspace Theme",
-        "category": "Colin's Themes"
+        "category": "Colin's Developer Toolkit"
+      },
+      {
+        "command": "colins-developer-toolkit.quickActions",
+        "title": "Quick Actions",
+        "category": "Colin's Developer Toolkit"
+      },
+      {
+        "command": "my-vsc-themes.restorePreviousTheme",
+        "title": "Restore Previous Theme",
+        "category": "Colin's Developer Toolkit"
+      },
+      {
+        "command": "colins-developer-toolkit.license.buy",
+        "title": "Buy Lifetime Bundle — CAD $14.99",
+        "category": "Colin's Developer Toolkit"
+      },
+      {
+        "command": "colins-developer-toolkit.license.activate",
+        "title": "Activate Lifetime Bundle",
+        "category": "Colin's Developer Toolkit"
+      },
+      {
+        "command": "colins-developer-toolkit.license.status",
+        "title": "Lifetime License Status",
+        "category": "Colin's Developer Toolkit"
+      },
+      {
+        "command": "colins-developer-toolkit.license.deactivate",
+        "title": "Remove Saved Purchase Key",
+        "category": "Colin's Developer Toolkit"
+      },
+      {
+        "command": "colins-developer-toolkit.license.installThemes",
+        "title": "Install Licensed Themes",
+        "category": "Colin's Developer Toolkit"
       }
     ],
     "configuration": {
@@ -351,13 +389,6 @@
         }
       ]
     },
-    "iconThemes": [
-      {
-        "id": "colins-color-icons",
-        "label": "Colin's Color Icons",
-        "path": "./fileicons/colins-color-icons-icon-theme.json"
-      }
-    ],
     "themes": [
       {
         "label": "All Orange",
@@ -519,9 +550,16 @@
         "uiTheme": "vs-dark",
         "path": "./themes/quest-tavern-color-theme.json"
       }
+    ],
+    "iconThemes": [
+      {
+        "id": "colins-color-icons",
+        "label": "Colin's Color Icons",
+        "path": "./fileicons/colins-color-icons-icon-theme.json"
+      }
     ]
   },
   "devDependencies": {
-    "sharp": "^0.34.5"
+    "sharp": "0.35.5"
   }
 }

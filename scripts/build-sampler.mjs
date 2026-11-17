@@ -5,9 +5,9 @@ const docsDir = new URL("docs/", root);
 const docsAssetsDir = new URL("assets/", docsDir);
 const docsPreviewDir = new URL("previews/", docsAssetsDir);
 const packageJson = JSON.parse(await readFile(new URL("package.json", root), "utf8"));
-const marketplaceUrl = "https://marketplace.visualstudio.com/items?itemName=ColinGamez.my-vsc-themes";
-const releaseUrl = "https://github.com/ColinGamez/My-VSC-Themes/releases/latest";
-const repoUrl = "https://github.com/ColinGamez/My-VSC-Themes";
+const marketplaceUrl = "https://marketplace.visualstudio.com/items?itemName=ColinGamez.colins-developer-toolkit";
+const releaseUrl = "https://github.com/ColinGamez/ColinsStudioToolkit/releases/latest";
+const repoUrl = "https://github.com/ColinGamez/ColinsStudioToolkit";
 const packDisplay = {
   orange: "Orange Core",
   core: "Color Moods",
@@ -177,8 +177,8 @@ const html = `<!doctype html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Colin's VS Code Themes</title>
-    <meta name="description" content="A colorful VS Code theme hub by ColinGamez.">
+    <title>Colin's Developer Toolkit</title>
+    <meta name="description" content="An all-in-one VS Code developer toolkit with 32 themes, file icons, and built-in productivity tools.">
     <meta property="og:image" content="assets/social-preview.png">
     <link rel="icon" href="assets/icon.png">
     <link rel="stylesheet" href="styles.css">
@@ -187,7 +187,7 @@ const html = `<!doctype html>
     <header class="site-header">
       <a class="brand" href="#">
         <img src="assets/icon.png" alt="" width="44" height="44">
-        <span>Colin's VS Code Themes</span>
+        <span>Colin's Developer Toolkit</span>
       </a>
       <nav aria-label="Primary">
         <a href="#themes">Themes</a>
@@ -201,8 +201,8 @@ const html = `<!doctype html>
     <main>
       <section class="hero">
         <div class="hero-copy">
-          <h1>Colorful VS Code themes for switching coding moods fast.</h1>
-          <p>${themes.length} themes across orange classics, seasonal palettes, holiday looks, gaming-inspired code moods, file icons, and settings presets.</p>
+          <h1>One toolkit for your code, docs, and workspace.</h1>
+          <p>Build bug reports, launch scripts, manage projects, write READMEs, and forge snippets. Includes ${themes.length} themes, matching file icons, and theme automation.</p><p>CAD $14.99 once for lifetime toolkit access. No subscription. <a href="https://colins-marketplace-billing.vercel.app">Get the toolkit</a>.</p>
           <div class="hero-actions">
             <a class="button primary" href="${marketplaceUrl}">Install from Marketplace</a>
             <a class="button secondary" href="#themes">Browse themes</a>
@@ -257,9 +257,9 @@ const html = `<!doctype html>
       <section id="install" class="install">
         <h2>Install from Marketplace</h2>
         <ol>
-          <li>Open the Marketplace page or search for <strong>Colin's VS Code Themes</strong> in VS Code Extensions.</li>
+          <li>Open the Marketplace page or search for <strong>Colin's Developer Toolkit</strong> in VS Code Extensions.</li>
           <li>Click <strong>Install</strong>.</li>
-          <li>Run <strong>Preferences: Color Theme</strong> and pick a palette.</li>
+          <li>Purchase lifetime access, then run <strong>Activate Lifetime Bundle</strong> with your private purchase key.</li><li>Run <strong>Install Licensed Themes</strong>, then <strong>Preferences: Color Theme</strong> to choose a palette.</li><li>Run <strong>Quick Actions</strong> to open the built-in developer tools.</li>
         </ol>
         <div class="install-actions">
           <a class="button primary" href="${marketplaceUrl}">Marketplace</a>

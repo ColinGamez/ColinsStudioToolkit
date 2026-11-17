@@ -1,65 +1,11 @@
-# Code Suite Split Plan
+# Toolkit organization
 
-Colin's VS Code Themes should stay a theme-first Marketplace extension. The developer tools that were incubated here will move into focused standalone extensions under the same `ColinGamez` publisher.
+Colin's Developer Toolkit is one self-contained extension, published as `ColinGamez.colins-developer-toolkit`.
 
-## Current Repo Role
+All developer tools are registered by extension.js and implemented in src/: Bug Report Builder, Project Command Center, Launch Pad, README Studio, Snippet Forge, and theme automation. suiteRuntime.js provides guarded commands and searchable Quick Actions. suiteLicense.js handles purchase activation and licensed theme delivery.
 
-This repository remains the home for:
+There are no standalone extension dependencies. Historical command and configuration IDs using my-vsc-themes remain for compatibility. The older standalone repositories are not required to build or use this toolkit.
 
-- Colin's VS Code Themes.
-- Colin's Color Icons.
-- Theme screenshots, previews, sampler, and theme quality checks.
-- Temporary preview copies of the Code Suite tools until their standalone extensions are live.
+Use npm run package for commercial installers. Theme contributions stay in the source manifest for asset development and are removed from the staged public installer; licensed themes and matching icons install through the authenticated billing service.
 
-## Standalone Extension Map
-
-| Tool | GitHub repository | Marketplace extension ID | Status |
-| --- | --- | --- | --- |
-| Project Command Center | `ColinGamez/Project-Command-Center` | `ColinGamez.project-command-center` | `v0.1.0` published |
-| Theme Reactor / Theme Switcher | `ColinGamez/ThemeReactor` | `ColinGamez.colins-theme-switcher` | `v0.1.3` published as a no-code companion pack after Marketplace blocked the code package |
-| README Studio | `ColinGamez/ColinsReadMeStudio` | `ColinGamez.colins-readme-studio` | `v0.1.0` published |
-| Snippet Forge | `ColinGamez/SnippetForge` | `ColinGamez.snippet-forge` | `v0.1.0` published |
-| Launch Pad | `ColinGamez/ColinsLaunchPad` | `ColinGamez.colins-launch-pad` | `v0.1.0` published |
-| Bug Report Builder | `ColinGamez/bug-report-builder` | `ColinGamez.bug-report-builder` | `v0.1.0` published |
-| Repo Time Machine | `ColinGamez/colins-repo-time-machine` | `ColinGamez.colins-repo-time-machine` | Future standalone extension |
-| Code Mood Board | `ColinGamez/colins-code-mood-board` | `ColinGamez.colins-code-mood-board` | Future standalone extension |
-| Code Suite Pack | `ColinGamez/colins-code-suite` | `ColinGamez.colins-code-suite` | Future extension pack manifest |
-
-## Live GitHub Releases
-
-- Bug Report Builder: https://github.com/ColinGamez/bug-report-builder/releases/tag/v0.1.0
-- Launch Pad: https://github.com/ColinGamez/ColinsLaunchPad/releases/tag/v0.1.0
-- README Studio: https://github.com/ColinGamez/ColinsReadMeStudio/releases/tag/v0.1.0
-- Project Command Center: https://github.com/ColinGamez/Project-Command-Center/releases/tag/v0.1.0
-- Snippet Forge: https://github.com/ColinGamez/SnippetForge/releases/tag/v0.1.0
-- Theme Reactor / Theme Switcher: https://github.com/ColinGamez/ThemeReactor/releases/tag/v0.1.3
-
-## Marketplace Pages
-
-- Bug Report Builder: https://marketplace.visualstudio.com/items?itemName=ColinGamez.bug-report-builder
-- Launch Pad: https://marketplace.visualstudio.com/items?itemName=ColinGamez.colins-launch-pad
-- README Studio: https://marketplace.visualstudio.com/items?itemName=ColinGamez.colins-readme-studio
-- Project Command Center: https://marketplace.visualstudio.com/items?itemName=ColinGamez.project-command-center
-- Snippet Forge: https://marketplace.visualstudio.com/items?itemName=ColinGamez.snippet-forge
-- Theme Switcher: https://marketplace.visualstudio.com/items?itemName=ColinGamez.colins-theme-switcher
-
-## Migration Order
-
-1. Create each standalone GitHub repository. Done for the first six tools.
-2. Scaffold each extension with its own `package.json`, `README.md`, `CHANGELOG.md`, `LICENSE`, `.vscodeignore`, and release workflow. Done for the first six tools.
-3. Copy the relevant module from this repo and trim command IDs/settings to the standalone extension name. Done for the first six tools.
-4. Publish each tool under the `ColinGamez` Marketplace publisher. Done for the first six Marketplace entries.
-5. Create `colins-code-suite` as an extension pack that installs the standalone tools.
-6. Update this theme extension to link to the standalone tool pages.
-7. After the standalone tools are stable, remove or deprecate the preview tool commands from this theme extension in a major release.
-
-## Naming Rules
-
-- GitHub repository names follow the names Colin created.
-- Marketplace package names use lowercase kebab case, even when the GitHub repository uses PascalCase.
-- Command IDs use the standalone package name as the prefix.
-- Each tool README explains one job clearly instead of describing the whole suite.
-
-## Transition Rule
-
-Do not remove the preview tools from Colin's VS Code Themes until the replacement standalone extension is published and linked. This keeps current users from losing commands while the suite is split out.
+See DEVELOPMENT.md for build and release instructions.

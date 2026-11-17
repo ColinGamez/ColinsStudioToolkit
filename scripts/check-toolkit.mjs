@@ -1,0 +1,11 @@
+import { readFileSync, readdirSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
+if (pkg.name !== 'colins-developer-toolkit' || pkg.extensionPack?.length || pkg.extensionDependencies?.length) throw new Error('Toolkit must be self-contained.');
+const modules = ['bugReportBuilder', 'commandCenter', 'launchPad', 'readmeStudio', 'snippetForge', 'themeReactor'];
+const entry = readFileSync('extension.js', 'utf8');
+for (const module of modules) if (!entry.includes(`./src/${module}`)) throw new Error(`Missing built-in tool: ${module}`);
+const config = JSON.parse(readFileSync('src/billing-config.json', 'utf8'));
+if (config.test !== false || !config.origin.startsWith('https://') || !config.publicKey.includes('PUBLIC KEY')) throw new Error('Invalid public live configuration.');
+for (const file of ['extension.js', ...readdirSync('src').filter(name => name.endsWith('.js')).map(name => `src/${name}`)]) execFileSync(process.execPath, ['--check', file], { stdio: 'inherit' });
+console.log('Toolkit identity, built-in tools, live configuration, and JavaScript syntax verified.');

@@ -6,7 +6,9 @@ const { execFileSync } = require("child_process");
 const SCRIPT_PRIORITY = ["dev", "start", "watch", "serve", "preview", "build", "test", "lint", "format", "package"];
 
 function workspaceRoot() {
-  return vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+  const editor = vscode.window.activeTextEditor;
+  const activeFolder = editor && vscode.workspace.getWorkspaceFolder(editor.document.uri);
+  return (activeFolder || vscode.workspace.workspaceFolders?.[0])?.uri.fsPath;
 }
 
 function existsAt(root, relativePath) {
@@ -133,6 +135,8 @@ function normalizeRemoteUrl(value) {
   }
 
   let url = value.trim().replace(/^git\+/, "");
+  const ssh = url.match(/^git@([^:]+):(.+)$/) || url.match(/^ssh:\/\/git@([^/]+)\/(.+)$/);
+  if (ssh) url = `https://${ssh[1]}/${ssh[2]}`;
 
   if (url.startsWith("git@github.com:")) {
     url = `https://github.com/${url.slice("git@github.com:".length)}`;

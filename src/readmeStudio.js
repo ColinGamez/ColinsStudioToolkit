@@ -1,3 +1,5 @@
+const { requireAccess } = require("./suiteLicense");
+const { registerSafeCommand } = require("./suiteRuntime");
 const vscode = require("vscode");
 const fs = require("fs");
 const path = require("path");
@@ -5,6 +7,7 @@ const { bestScript, packageRepositoryUrl, projectSnapshot, scriptCommand } = req
 
 const README_STUDIO_VIEW_TYPE = "my-vsc-themes.readmeStudio";
 let readmeStudioPanel;
+let readmeContext;
 
 function nonce() {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -103,6 +106,8 @@ function readmeStudioState() {
 
   return {
     hasWorkspace: Boolean(snapshot.root),
+    workspaceKey: snapshot.root || "",
+    draft: readmeContext?.workspaceState.get("readmeStudio.drafts", {})[snapshot.root],
     projectName: snapshot.name || "My Project",
     projectTypes: snapshot.projectTypes || [],
     packageManager: snapshot.packageManager || "npm",
@@ -135,10 +140,10 @@ async function saveReadmeFromStudio(markdown) {
     return;
   }
 
-  const filePath = path.join(snapshot.root, "README.md");
+  const filePath = readmeFilePath(snapshot);
   const exists = fs.existsSync(filePath);
   const action = await vscode.window.showWarningMessage(
-    `${exists ? "Overwrite" : "Create"} README.md with the README Studio draft?`,
+    `${exists ? "Overwrite" : "Create"} ${snapshot.readme || "README.md"} with the README Studio draft?`,
     { modal: false },
     exists ? "Overwrite" : "Create"
   );
@@ -148,7 +153,7 @@ async function saveReadmeFromStudio(markdown) {
   }
 
   await vscode.workspace.fs.writeFile(vscode.Uri.file(filePath), Buffer.from(`${normalizedMarkdown}\n`, "utf8"));
-  vscode.window.showInformationMessage("README Studio: README.md saved.");
+  vscode.window.showInformationMessage(`README Studio: ${snapshot.readme || "README.md"} saved.`);
 }
 
 async function openReadmeStudio() {
@@ -182,6 +187,14 @@ async function openReadmeStudio() {
   panel.webview.html = readmeStudioHtml(panel.webview, token, state);
 
   panel.webview.onDidReceiveMessage(async (message) => {
+    if (!await requireAccess(true)) return;
+    if (message?.type === "persistDraft" && typeof message.workspaceKey === "string" && message.workspaceKey === readmeStudioState().workspaceKey && typeof message.draft?.markdown === "string" && message.draft.markdown.length <= 1000000) {
+      const drafts = readmeContext.workspaceState.get("readmeStudio.drafts", {});
+      delete drafts[message.workspaceKey];
+      drafts[message.workspaceKey] = message.draft;
+      await readmeContext.workspaceState.update("readmeStudio.drafts", Object.fromEntries(Object.entries(drafts).slice(-10)));
+      return;
+    }
     if (message?.type === "saveReadme") {
       await saveReadmeFromStudio(String(message.markdown ?? ""));
       panel.webview.postMessage({ type: "context", state: readmeStudioState() });
@@ -807,7 +820,29 @@ function readmeStudioHtml(webview, token, state) {
       return blocks.join("");
     }
 
+    function persistDraft() {
+      const state = vscode.getState() || {};
+      const values = Object.fromEntries(fields.map(id => [id, { value: el(id).value, checked: el(id).checked }]));
+      state[context.workspaceKey] = { values, markdown: el("markdown").value };
+      vscode.setState(state);
+      vscode.postMessage({ type: "persistDraft", workspaceKey: context.workspaceKey, draft: state[context.workspaceKey] });
+    }
+
+    function restoreDraft() {
+      const draft = vscode.getState()?.[context.workspaceKey] || context.draft;
+      if (!draft) return false;
+      for (const id of fields) {
+        if (!draft.values[id]) continue;
+        el(id).value = draft.values[id].value;
+        el(id).checked = draft.values[id].checked;
+      }
+      el("markdown").value = draft.markdown;
+      refreshPreview();
+      return true;
+    }
+
     function refreshPreview() {
+      persistDraft();
       el("preview").innerHTML = markdownToHtml(el("markdown").value) || '<div class="empty">Start building your README.</div>';
     }
 
@@ -818,6 +853,7 @@ function readmeStudioHtml(webview, token, state) {
 
     function hydrate(nextContext) {
       context = nextContext;
+      if (restoreDraft()) return;
       el("contextLine").textContent = context.projectName + " · " + (context.projectTypes || []).join(" / ");
       el("title").value = context.projectName || "My Project";
       el("tagline").value = context.projectTypes.includes("VS Code Extension") ? "A polished VS Code extension built for fast daily workflows." : "A polished project built for fast daily workflows.";
@@ -860,7 +896,8 @@ function readmeStudioHtml(webview, token, state) {
 }
 
 function registerReadmeStudio(context) {
-  context.subscriptions.push(vscode.commands.registerCommand("my-vsc-themes.readmeStudio.open", openReadmeStudio));
+  readmeContext = context;
+  context.subscriptions.push(registerSafeCommand("my-vsc-themes.readmeStudio.open", openReadmeStudio));
 }
 
 module.exports = { registerReadmeStudio };

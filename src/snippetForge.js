@@ -1,3 +1,4 @@
+const { registerSafeCommand } = require("./suiteRuntime");
 const vscode = require("vscode");
 const fs = require("fs");
 const path = require("path");
@@ -119,15 +120,23 @@ function placeholderDefault(value) {
   return String(value || "").replace(/[\\}:$]/g, "");
 }
 
+function dedentSelection(text) {
+  const lines = String(text || "").replace(/\r\n/g, "\n").split("\n");
+  const nonEmpty = lines.filter(line => line.trim());
+  const indent = nonEmpty.length ? Math.min(...nonEmpty.map(line => line.match(/^[\t ]*/)[0].length)) : 0;
+  return lines.map(line => line.slice(Math.min(indent, line.match(/^[\t ]*/)[0].length))).join("\n");
+}
+
 function snippetBodyLines(text, placeholders) {
-  const selected = [...new Set(placeholders)].filter(Boolean);
+  text = dedentSelection(text);
+  const selected = [...new Set(placeholders || [])].filter(Boolean);
 
   if (!selected.length) {
-    return String(text || "").split(/\r?\n/).map(escapeSnippetLiteral);
+    return [...String(text || "").split(/\r?\n/).map(escapeSnippetLiteral), "$0"];
   }
 
   const placeholderIndex = new Map(selected.map((name, index) => [name, index + 1]));
-  const pattern = new RegExp(`\\b(${selected.map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})\\b`, "g");
+  const pattern = new RegExp(`(?<![A-Za-z0-9_$])(${selected.map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})(?![A-Za-z0-9_$])`, "g");
 
   return String(text || "")
     .split(/\r?\n/)
@@ -144,7 +153,7 @@ function snippetBodyLines(text, placeholders) {
 
       output += escapeSnippetLiteral(line.slice(lastIndex));
       return output;
-    });
+    }).concat("$0");
 }
 
 function buildSnippetEntry({ name, prefix, scope, description, text, placeholders }) {
@@ -334,8 +343,8 @@ async function createSnippetFromSelection() {
 
 function registerSnippetForge(context) {
   context.subscriptions.push(
-    vscode.commands.registerCommand("my-vsc-themes.snippetForge.createFromSelection", createSnippetFromSelection),
-    vscode.commands.registerCommand("my-vsc-themes.snippetForge.openWorkspaceSnippets", openWorkspaceSnippets)
+    registerSafeCommand("my-vsc-themes.snippetForge.createFromSelection", createSnippetFromSelection),
+    registerSafeCommand("my-vsc-themes.snippetForge.openWorkspaceSnippets", openWorkspaceSnippets)
   );
 }
 
